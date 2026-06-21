@@ -108,7 +108,7 @@ function createConfettiBurst(targetX, targetY, count = 25) {
     }
 }
 
-// [NEW FEATURE] Floating Balloon Delivery Engine
+// Floating Balloon Delivery Engine
 function launchBalloons() {
     const container = document.getElementById('balloon-container');
     const balloonEmojis = ['🎈', '💖', '✨', '🎈', '🌸'];
@@ -120,28 +120,22 @@ function launchBalloons() {
             balloon.innerText = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
             balloon.style.left = Math.random() * 100 + 'vw';
             balloon.style.setProperty('--drift-x', (Math.random() * 80 - 40) + 'px');
-            // Randomize speed sizes slightly for staggered layers
             balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
             balloon.style.fontSize = (Math.random() * 1.5 + 1.8) + 'rem';
             
             container.appendChild(balloon);
             
-            // Clean DOM element post animation finish
             setTimeout(() => balloon.remove(), 5000);
-        }, i * 150); // Staggered entry delay
+        }, i * 150);
     }
 }
 
-// [NEW FEATURE] Cake Interaction Caller
+// Cake Interaction Caller
 function triggerCakeCelebration(event) {
     const rect = event.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-
-    // 1. Heavy grand sparkles burst
     createConfettiBurst(centerX, centerY, 55);
-
-    // 2. Launch floating party balloon arrays
     launchBalloons();
 }
 
@@ -184,25 +178,44 @@ const secretLogs = {
     }
 };
 
+// State keeper to allow petal unselecting (undo feature)
+let currentActivePetalId = null;
+
 function revealSecret(id, element) {
     const screen = document.getElementById('display-screen');
     const panel = document.querySelector('.message-display-box');
-    const logs = secretLogs[id];
-
+    
+    // Quick burst coords
     const rect = element.getBoundingClientRect();
-    createConfettiBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    createConfettiBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 15);
 
-    element.classList.add('pop');
+    // UNDO CHECK: If she clicks the active petal a second time, clear it!
+    if (currentActivePetalId === id) {
+        element.classList.remove('active-petal');
+        screen.innerHTML = `<p class="display-placeholder">Select a capsule to read the hidden logs...</p>`;
+        currentActivePetalId = null;
+        return;
+    }
+
+    // Otherwise, wipe old active styles from all other capsules
+    document.querySelectorAll('.wheel-petal').forEach(petal => {
+        petal.classList.remove('active-petal');
+    });
+
+    // Mark current petal as active glow state
+    element.classList.add('active-petal');
+    currentActivePetalId = id;
+
+    // Trigger panel pop animation flash
     panel.classList.add('flash');
-    setTimeout(() => {
-        element.classList.remove('pop');
-        panel.classList.remove('flash');
-    }, 300);
+    setTimeout(() => panel.classList.remove('flash'), 300);
 
+    const logs = secretLogs[id];
     screen.innerHTML = `
         <div class="active-message">
             <strong>${logs.title}</strong>
             <p>${logs.text}</p>
+            <span class="close-msg-hint"> </span>
         </div>
     `;
 }

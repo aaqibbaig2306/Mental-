@@ -4,32 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday, Bushra!</title>
-    <!-- Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Particle & Celebration Canvas -->
     <canvas id="ambient-canvas"></canvas>
 
-    <!-- Global Container for Floating Balloons -->
     <div id="balloon-container"></div>
 
     <div class="wrapper">
-        <!-- Main Header -->
         <header class="main-header">
             <span class="edition-tag">Mental's Day</span>
             <h1 class="main-title">Happy Birthday, <br><span class="name-highlight">Bushra</span> 🌸</h1>
-            <p class="subtitle">To the girl who is very spcial in my life.</p>
+            <p class="subtitle">To the girl who is very special in my life and irreplable one.</p>
         </header>
 
-        <!-- Unique Interactive Core Layout -->
         <main class="interactive-zone">
             
-            <!-- Interactive Locket System with 3D Tilt Effect -->
             <div class="locket-wrapper" id="locket-container">
                 <div class="locket-heart-tilt">
                     <div class="locket-heart" onclick="unlockLocket()">
@@ -41,11 +35,9 @@
                 <p class="hint-text">Mental, tap the heart locket to unlock your birthday surprise...</p>
             </div>
 
-            <!-- Secret Keepsake Box (Hidden Until Clicked) -->
             <div class="keepsake-box hidden" id="keepsake-panel">
                 <div class="glow-effect"></div>
                 
-                <!-- [NEW] Interactive Birthday Cake Celebration Zone -->
                 <div class="cake-zone" onclick="triggerCakeCelebration(event)">
                     <div class="cake-emoji">🎂</div>
                     <p class="cake-hint">Mental, tap the cake to blow the candles! 🕯️✨</p>
@@ -54,18 +46,16 @@
                 <h2 class="wheel-title">Tap a petal, Mental! ✨</h2>
                 
                 <div class="fortune-wheel">
-                    <div class="wheel-petal" onclick="revealSecret(1, this)">🌸 <small>Laughs</small></div>
-                    <div class="wheel-petal" onclick="revealSecret(2, this)">✨ <small>Sparkle</small></div>
-                    <div class="wheel-petal" onclick="revealSecret(3, this)">🤍 <small>Bond</small></div>
-                    <div class="wheel-petal" onclick="revealSecret(4, this)">👑 <small>Queen</small></div>
+                    <div class="wheel-petal" data-id="1" onclick="revealSecret(1, this)">🌸 <small>Laughs</small></div>
+                    <div class="wheel-petal" data-id="2" onclick="revealSecret(2, this)">✨ <small>Sparkle</small></div>
+                    <div class="wheel-petal" data-id="3" onclick="revealSecret(3, this)">🤍 <small>Bond</small></div>
+                    <div class="wheel-petal" data-id="4" onclick="revealSecret(4, this)">👑 <small>Queen</small></div>
                 </div>
 
-                <!-- Live Message Display Dynamic Screen -->
                 <div class="message-display-box" id="display-screen">
                     <p class="display-placeholder">Select a capsule to read the hidden logs...</p>
                 </div>
 
-                <!-- Bottom Wishing Panel -->
                 <div class="wishing-footer">
                     <p class="signature">May this year bring you endless peace, magic, and pure happiness, Bushra. Happy 21st Birthday, Mental! 💖</p>
                 </div>

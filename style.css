@@ -224,7 +224,7 @@ body {
     background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
 }
 
-/* [NEW FEATURE] Interactive Cake Layout */
+/* Interactive Cake Layout */
 .cake-zone {
     margin-bottom: 25px;
     padding: 15px;
@@ -292,17 +292,23 @@ body {
 
 .wheel-petal:active, .wheel-petal.pop {
     transform: scale(0.92);
+}
+
+/* [ADDED STATE] Visual Glow for the currently selected active petal */
+.wheel-petal.active-petal {
     background: #fff0f0;
     border-color: var(--rose-gold);
-    box-shadow: 0 0 15px rgba(229, 152, 152, 0.4);
+    box-shadow: 0 0 15px rgba(229, 152, 152, 0.45);
+    transform: scale(0.96);
 }
 
 /* Dynamic Text Screen Engine */
 .message-display-box {
+    position: relative;
     background: #fffbfb;
     border: 1px dashed rgba(229, 152, 152, 0.45);
     border-radius: 14px;
-    padding: 20px 15px;
+    padding: 24px 15px 20px 15px;
     min-height: 110px;
     display: flex;
     align-items: center;
@@ -326,6 +332,7 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     animation: fadeInPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+    width: 100%;
 }
 
 .active-message strong {
@@ -334,6 +341,17 @@ body {
     font-size: 1.1rem;
     display: block;
     margin-bottom: 4px;
+}
+
+/* Sleek close text anchor inside the log window */
+.close-msg-hint {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--rose-gold);
+    margin-top: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 /* Wishing Footer Section */
